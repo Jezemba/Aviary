@@ -1,0 +1,7 @@
+# Aviary MCP Server — pinned dependency versions
+# openmdao/dymos versions match Aviary 0.9.10 CI "oldest" test matrix
+aviary==0.9.10
+openmdao==3.36.0
+dymos==1.13.1
+fastmcp>=3.0.0
+pytest

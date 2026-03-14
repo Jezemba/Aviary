@@ -205,3 +205,13 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Aviary reference repo clone
+_aviary_ref/
+
+# Aviary/OpenMDAO output directories (generated during runs)
+*_out/
+*.db
+
+# Logs
+logs/
