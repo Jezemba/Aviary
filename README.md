@@ -4,7 +4,7 @@ MCP server that exposes NASA's [Aviary](https://github.com/OpenMDAO/Aviary) airc
 
 ## Related Repositories
 
-- **[MAS-Aviary](https://github.com/Jezemba/MAS-Aviary)** — Multi-agent LLM framework that uses this MCP server as its backend for aircraft design optimization. MAS-Aviary orchestrates specialized agents (exploration, modification, simulation, analysis) that collaborate to find fuel-optimal aircraft configurations by calling the tools exposed here.
+- **[MAS-Aviary](https://github.com/cmudrc/MAS-Aviary)** — Multi-agent LLM framework that uses this MCP server as its backend for aircraft design optimization. MAS-Aviary orchestrates specialized agents (exploration, modification, simulation, analysis) that collaborate to find fuel-optimal aircraft configurations by calling the tools exposed here.
 
 ## Quick start
 
@@ -41,7 +41,7 @@ The server listens on **`http://localhost:8600/mcp`** (streamable-HTTP transport
 
 Point any MCP-compatible client at `http://localhost:8600/mcp`. The server exposes 9 tools that follow a session-based lifecycle.
 
-> **MAS-Aviary integration:** The [MAS-Aviary](https://github.com/Jezemba/MAS-Aviary) multi-agent framework connects to this endpoint automatically. See the [MAS-Aviary quickstart guide](https://github.com/Jezemba/MAS-Aviary#quick-start) for instructions on running the full multi-agent optimization pipeline.
+> **MAS-Aviary integration:** The [MAS-Aviary](https://github.com/cmudrc/MAS-Aviary) multi-agent framework connects to this endpoint automatically. See the [MAS-Aviary quickstart guide](https://github.com/cmudrc/MAS-Aviary#quick-start) for instructions on running the full multi-agent optimization pipeline.
 
 ```
 get_design_space  →  create_session  →  set_aircraft_parameters  →  configure_mission
