@@ -133,3 +133,32 @@ This method does not exist in Aviary 0.9.10. The server uses the correct call se
 
 **Simulation hangs or times out:**
 `run_simulation` accepts a `timeout_seconds` parameter (default 300). Complex configurations may need more time. Check that the optimizer iteration count (`configure_mission` → `optimizer_max_iter`) is reasonable.
+
+## Citation
+
+If you use this MCP server in your research, please cite:
+
+```bibtex
+@inproceedings{ezemba2026structure,
+  title={Structure Shapes Coordination: An Empirical Evaluation of Organizational
+         Design Principles in Multi-Agent Engineering Design},
+  author={Ezemba, Jessica and McComb, Christopher and Tucker, Conrad},
+  booktitle={ASME 2026 International Design Engineering Technical Conferences
+             and Computers and Information in Engineering Conference (IDETC/CIE2026)},
+  address={Houston, TX},
+  month={August 23--26},
+  year={2026}
+}
+```
+
+This server wraps NASA's [OpenMDAO/Aviary](https://github.com/OpenMDAO/Aviary):
+
+```bibtex
+@software{aviary,
+  title={Aviary: A Multidisciplinary Design, Analysis, and Optimization Tool
+         for Aircraft},
+  author={{NASA Glenn Research Center}},
+  url={https://github.com/OpenMDAO/Aviary},
+  year={2024}
+}
+```
