@@ -81,7 +81,7 @@ python test_aviary_mcp_connection.py
 |-----------|---------|-------|-------|
 | Aircraft.Wing.ASPECT_RATIO | 11.22 | — | 7–14 |
 | Aircraft.Wing.AREA | 124.6 | m² | 100–160 |
-| Aircraft.Wing.SPAN | 37.35 | m | 28–48 |
+| Aircraft.Wing.SPAN | 37.35 | m | 28–48 (derived: `span = √(AR × area)`) |
 | Aircraft.Wing.SWEEP | 25.0 | deg | 15–40 |
 | Aircraft.Wing.TAPER_RATIO | 0.278 | — | 0.15–0.45 |
 | Aircraft.Fuselage.LENGTH | 37.79 | m | 28–50 |
@@ -90,7 +90,7 @@ python test_aviary_mcp_connection.py
 | Aircraft.Engine.SCALED_SLS_THRUST | 28928 | lbf | 20k–45k (read-only, derived from SCALE_FACTOR) |
 | Aircraft.Engine.SCALE_FACTOR | 1.0 | — | 0.8–1.5 |
 
-Wing area, span, and aspect ratio are coupled: `AR = span² / area`. Change at most one per call.
+Wing area, span, and aspect ratio are coupled: `AR = span² / area`. **Span is a derived parameter** — it is computed from aspect ratio and area and should not be set directly. If you set span explicitly, the server will warn if the coupling constraint is violated by more than 5%. Set `ASPECT_RATIO` and `AREA` instead, and span will be derived automatically. `SCALED_SLS_THRUST` is similarly derived from `SCALE_FACTOR`.
 
 ## Mission defaults
 
