@@ -2,6 +2,10 @@
 
 MCP server that exposes NASA's [Aviary](https://github.com/OpenMDAO/Aviary) aircraft design optimizer as 9 tools over streamable-HTTP. An AI agent (or any MCP client) can explore the design space, modify aircraft parameters, run gradient-based trajectory optimization, and retrieve results — all through standard MCP calls.
 
+## Related Repositories
+
+- **[MAS-Aviary](https://github.com/Jezemba/MAS-Aviary)** — Multi-agent LLM framework that uses this MCP server as its backend for aircraft design optimization. MAS-Aviary orchestrates specialized agents (exploration, modification, simulation, analysis) that collaborate to find fuel-optimal aircraft configurations by calling the tools exposed here.
+
 ## Quick start
 
 ### 1. Create the conda environment
@@ -35,7 +39,9 @@ The server listens on **`http://localhost:8600/mcp`** (streamable-HTTP transport
 
 ### 3. Connect a client
 
-Point any MCP-compatible client at `http://localhost:8600/mcp`. The server exposes 9 tools that follow a session-based lifecycle:
+Point any MCP-compatible client at `http://localhost:8600/mcp`. The server exposes 9 tools that follow a session-based lifecycle.
+
+> **MAS-Aviary integration:** The [MAS-Aviary](https://github.com/Jezemba/MAS-Aviary) multi-agent framework connects to this endpoint automatically. See the [MAS-Aviary quickstart guide](https://github.com/Jezemba/MAS-Aviary#quick-start) for instructions on running the full multi-agent optimization pipeline.
 
 ```
 get_design_space  →  create_session  →  set_aircraft_parameters  →  configure_mission
@@ -62,7 +68,7 @@ python test_aviary_mcp_connection.py
 | 1 | `get_design_space` | List 10 modifiable aircraft parameters with defaults, units, and bounds |
 | 2 | `create_session` | Start a new session (loads 737/A320-class baseline aircraft) |
 | 3 | `set_aircraft_parameters` | Modify wing, fuselage, or engine parameters with validation |
-| 4 | `configure_mission` | Set range, passengers, cruise Mach, altitude, optimizer iterations |
+| 4 | `configure_mission` | Set range, passengers, cruise Mach, altitude, optimizer iterations (defaults: 1500 nmi, 162 pax, Mach 0.785, FL350) |
 | 5 | `validate_parameters` | Static checks + quick model evaluation (~6-9s) without running the optimizer |
 | 6 | `run_simulation` | Run SLSQP trajectory optimization (default 200 iterations, ~40-60s) |
 | 7 | `get_results` | Read fuel burn, GTOW, wing mass, reserve fuel, zero-fuel weight |
@@ -85,6 +91,16 @@ python test_aviary_mcp_connection.py
 | Aircraft.Engine.SCALE_FACTOR | 1.0 | — | 0.8–1.5 |
 
 Wing area, span, and aspect ratio are coupled: `AR = span² / area`. Change at most one per call.
+
+## Mission defaults
+
+| Parameter | Default |
+|-----------|---------|
+| Range | 1,500 nmi |
+| Passengers | 162 |
+| Cruise Mach | 0.785 |
+| Cruise altitude | FL350 (35,000 ft) |
+| Optimizer iterations | 200 (SLSQP) |
 
 ## Project structure
 
